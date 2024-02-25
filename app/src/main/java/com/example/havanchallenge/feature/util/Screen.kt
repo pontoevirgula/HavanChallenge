@@ -1,4 +1,4 @@
-package com.example.havanchallenge.feature.presentation
+package com.example.havanchallenge.feature.util
 
 sealed class Screen(val rout: String) {
     data object Home : Screen("home")
