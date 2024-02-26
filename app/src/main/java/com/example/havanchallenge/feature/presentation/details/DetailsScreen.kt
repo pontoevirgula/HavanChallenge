@@ -10,7 +10,9 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
 import androidx.compose.material3.Text
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.havanchallenge.feature.domain.model.Product
@@ -28,41 +30,44 @@ fun DetailsScreen(product: Product?){
             Text(
                 modifier = Modifier.padding(start = 16.dp),
                 text = product.brand,
-                fontSize = 19.sp,
-                fontWeight = FontWeight.SemiBold
+                fontSize = 32.sp,
+                textAlign = TextAlign.Center,
+                fontWeight = FontWeight.Bold,
+                color = Color.Red
             )
-            Spacer(modifier = Modifier.height(8.dp))
 
-            Text(
-                modifier = Modifier.padding(start = 16.dp),
-                text = product.description,
-                fontSize = 12.sp,
-                fontWeight = FontWeight.SemiBold
-            )
-            Spacer(modifier = Modifier.height(8.dp))
-
-            Text(
-                modifier = Modifier.padding(start = 16.dp),
-                text = product.price,
-                fontSize = 19.sp,
-                fontWeight = FontWeight.SemiBold
-            )
-            Spacer(modifier = Modifier.height(8.dp))
-
+            Spacer(modifier = Modifier.height(16.dp))
             Text(
                 modifier = Modifier.padding(start = 16.dp),
                 text = product.category,
-                fontSize = 16.sp,
+                fontSize = 22.sp,
                 fontWeight = FontWeight.SemiBold
             )
-            Spacer(modifier = Modifier.height(8.dp))
 
+            Spacer(modifier = Modifier.height(8.dp))
             Text(
                 modifier = Modifier.padding(start = 16.dp),
                 text = product.productType,
-                fontSize = 16.sp,
+                fontSize = 22.sp,
                 fontWeight = FontWeight.SemiBold
             )
+
+            Spacer(modifier = Modifier.height(16.dp))
+            Text(
+                modifier = Modifier.padding(start = 16.dp),
+                text = product.description,
+                fontSize = 22.sp,
+                fontWeight = FontWeight.SemiBold
+            )
+
+            Spacer(modifier = Modifier.height(16.dp))
+            Text(
+                modifier = Modifier.padding(start = 16.dp),
+                text = "R$ ${product.price}",
+                fontSize = 22.sp,
+                fontWeight = FontWeight.SemiBold
+            )
+
         }
 
     }

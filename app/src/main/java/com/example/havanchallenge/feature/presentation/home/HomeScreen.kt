@@ -31,9 +31,9 @@ fun HomeScreen(navHostController: NavHostController) {
         }
     } else {
         LazyVerticalGrid(
-            columns = GridCells.Fixed(2),
+            columns = GridCells.Fixed(1),
             modifier = Modifier.fillMaxSize(),
-            contentPadding = PaddingValues(vertical = 8.dp, horizontal = 4.dp)
+            contentPadding = PaddingValues(vertical = 16.dp, horizontal = 4.dp)
         ){
             items(productListState.products?.size!!){ index ->
                 ProductItem(

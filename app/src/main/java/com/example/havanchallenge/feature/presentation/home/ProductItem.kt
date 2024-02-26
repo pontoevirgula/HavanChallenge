@@ -1,8 +1,9 @@
 package com.example.havanchallenge.feature.presentation.home
 
 import android.net.Uri
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
+import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
@@ -24,13 +25,16 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.example.havanchallenge.feature.domain.model.Product
+import com.example.havanchallenge.feature.presentation.favorites.FavoriteViewModel
 import com.example.havanchallenge.feature.util.Screen
 import com.google.gson.Gson
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun ProductItem(
     product: Product,
-    navHostController: NavHostController
+    navHostController: NavHostController,
+    favoriteViewModel: FavoriteViewModel? = null
 ){
     val defaultColor = MaterialTheme.colorScheme.secondaryContainer
     val dominantColor by remember {
@@ -51,17 +55,22 @@ fun ProductItem(
                    )
                )
            )
-           .clickable {
-               val json = Uri.encode(Gson().toJson(product))
-               navHostController.navigate(Screen.Details.rout + "/$json")
-           }
+           .combinedClickable(
+               onClick = {
+                   val json = Uri.encode(Gson().toJson(product))
+                   navHostController.navigate(Screen.Details.rout + "/$json")
+               },
+               onLongClick = {
+                   favoriteViewModel?.addFavorite(product)
+               },
+          )
    ){
-       Spacer(modifier = Modifier.height(6.dp))
+       Spacer(modifier = Modifier.height(16.dp))
        Text(
            modifier = Modifier.padding(start = 16.dp, end = 8.dp),
            text = product.brand,
-           color = Color.White,
-           fontSize = 15.sp,
+           color = Color.Red,
+           fontSize = 22.sp,
            maxLines = 1
        )
 
@@ -69,18 +78,20 @@ fun ProductItem(
        Text(
            modifier = Modifier.padding(start = 16.dp, end = 8.dp),
            text = product.description,
-           color = Color.White,
-           fontSize = 15.sp,
+           color = Color.Black,
+           fontSize = 19.sp,
            maxLines = 1
        )
 
        Spacer(modifier = Modifier.height(6.dp))
        Text(
            modifier = Modifier.padding(start = 16.dp, end = 8.dp),
-           text = product.price,
-           color = Color.White,
-           fontSize = 15.sp,
+           text = "R$ ${product.price}",
+           color = Color.Black,
+           fontSize = 19.sp,
            maxLines = 1
        )
+
+       Spacer(modifier = Modifier.height(16.dp))
    }
 }

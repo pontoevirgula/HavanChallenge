@@ -19,7 +19,7 @@ class ProductListRepositoryImpl @Inject constructor(
             try {
                 val getProductFromApi = api.getProductList().take(10)
                 emit(Resource.Success(
-                    data = getProductFromApi.map { it.toProduct() }
+                    data = getProductFromApi.map { it.toProductFromRemote() }
                 ))
                 emit(Resource.Loading(false))
                 return@flow

@@ -47,15 +47,15 @@ class ProductDTO : ArrayList<ProductDTO.ProductDTOItem>() {
         @SerialName("website_link")
         val websiteLink: String
     ) {
-        fun toProduct(): Product =
+        fun toProductFromRemote(): Product =
             Product(
-                id = id,
                 brand = brand,
                 description = description ?: "",
                 price = price ?: "",
                 rating = rating,
                 productType = productType ?: "",
-                category = category
+                category = category,
+                id = id
             )
     }
 

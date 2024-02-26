@@ -3,6 +3,7 @@ package com.example.havanchallenge.feature.domain.model
 import android.os.Bundle
 import android.os.Parcelable
 import androidx.navigation.NavType
+import com.example.havanchallenge.feature.data.local.entity.FavoriteEntity
 import com.google.gson.Gson
 import kotlinx.parcelize.Parcelize
 
@@ -15,7 +16,17 @@ data class Product(
     val rating : Double,
     val productType: String,
     val category: String
-): Parcelable
+): Parcelable {
+    fun toEntityDb() = FavoriteEntity(
+        brand = brand,
+        description = description,
+        price = price,
+        rating = rating,
+        productType = productType,
+        category = category,
+        id = id
+    )
+}
 
 
 class ProductType : NavType<Product>(isNullableAllowed = false) {

@@ -6,7 +6,11 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.FloatingActionButton
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
@@ -29,6 +33,7 @@ import com.example.havanchallenge.core.ui.theme.HavanChallengeTheme
 import com.example.havanchallenge.feature.domain.model.Product
 import com.example.havanchallenge.feature.domain.model.ProductType
 import com.example.havanchallenge.feature.presentation.details.DetailsScreen
+import com.example.havanchallenge.feature.presentation.favorites.FavoritesScreen
 import com.example.havanchallenge.feature.presentation.home.HomeScreen
 import com.example.havanchallenge.feature.util.Screen
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
@@ -54,6 +59,7 @@ class MainActivity : ComponentActivity() {
                         composable(Screen.Home.rout) {
                             CallHome(navController)
                         }
+
                         composable(
                             route = Screen.Details.rout + "/{product}",
                             arguments = listOf(
@@ -63,7 +69,12 @@ class MainActivity : ComponentActivity() {
                             )
                         ) {
                             val product = it.arguments?.getParcelable<Product>("product")
+                            ViewManager.productSelected = product
                             DetailsScreen(product)
+                        }
+
+                        composable(route = Screen.Favorites.rout) {
+                            FavoritesScreen(navController)
                         }
                     }
                 }
@@ -89,7 +100,17 @@ fun CallHome(navHostController: NavHostController) {
                     MaterialTheme.colorScheme.inverseOnSurface
                 )
             )
+        },
+        floatingActionButton = {
+            FloatingActionButton(
+                onClick = {
+                    navHostController.navigate(Screen.Favorites.rout)
+                },
+            ) {
+                Icon(Icons.Filled.Favorite, "Floating action button.")
+            }
         }
+
     ) {
         Box(
             modifier = Modifier
@@ -107,4 +128,8 @@ private fun SetBarColor(color: Color) {
     LaunchedEffect(key1 = color) {
         systemUiController.setSystemBarsColor(color)
     }
+}
+
+object ViewManager {
+    var productSelected: Product? = null
 }
