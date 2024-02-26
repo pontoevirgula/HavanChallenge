@@ -1,6 +1,8 @@
 package com.example.havanchallenge.feature.data.di
 
+import com.example.havanchallenge.feature.data.repository.FavoriteRepositoryImpl
 import com.example.havanchallenge.feature.data.repository.ProductListRepositoryImpl
+import com.example.havanchallenge.feature.domain.repository.FavoriteRepository
 import com.example.havanchallenge.feature.domain.repository.ProductListRepository
 import dagger.Binds
 import dagger.Module
@@ -17,4 +19,10 @@ abstract class RepositoryModule {
     abstract fun bindProductRepository(
         repositoryImpl: ProductListRepositoryImpl
     ) : ProductListRepository
+
+    @Binds
+    @Singleton
+    abstract fun bindFavoriteRepository(
+        repositoryImpl: FavoriteRepositoryImpl
+    ) : FavoriteRepository
 }
