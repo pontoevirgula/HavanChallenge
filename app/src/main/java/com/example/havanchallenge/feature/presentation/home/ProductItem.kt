@@ -34,7 +34,7 @@ import com.google.gson.Gson
 fun ProductItem(
     product: Product,
     navHostController: NavHostController,
-    favoriteViewModel: FavoriteViewModel? = null
+    favoriteViewModel: FavoriteViewModel
 ){
     val defaultColor = MaterialTheme.colorScheme.secondaryContainer
     val dominantColor by remember {
@@ -61,8 +61,13 @@ fun ProductItem(
                    navHostController.navigate(Screen.Details.rout + "/$json")
                },
                onLongClick = {
-                   favoriteViewModel?.addFavorite(product)
+                   favoriteViewModel.addFavorite(product)
+                   navHostController.navigate(Screen.Favorites.rout)
                },
+               onDoubleClick = {
+                   favoriteViewModel.removeFavorite(product)
+                   navHostController.navigate(Screen.Home.rout)
+               }
           )
    ){
        Spacer(modifier = Modifier.height(16.dp))

@@ -29,18 +29,6 @@ class FavoriteRepositoryImpl @Inject constructor(
         }
     }
 
-//    fun a() : List<Product> =
-//        listOf( Product(
-//            id=1044,
-//            brand="boosh",
-//            description="All of our products are free from lead and heavy metals, parabens, phthalates, artificial colourants, and synthetic fragrances.  Boosh lipstick glides on smoothly for clean & protective SPF coverage. They are filled with hydrating oils and butters to preserve and enhance your lips natural surface. Organic sweet orange oil gives a light and cheerful scent.",
-//            price="26.0",
-//            rating=0.0,
-//            productType="",
-//            category="lipstick")
-//        )
-
-
     override suspend fun insert(product: Product) {
         dao.insertFavorite(product.toEntityDb())
         Resource.Success(data = product)

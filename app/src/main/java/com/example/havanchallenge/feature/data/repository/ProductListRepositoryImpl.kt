@@ -17,7 +17,7 @@ class ProductListRepositoryImpl @Inject constructor(
             emit(Resource.Loading(true))
 
             try {
-                val getProductFromApi = api.getProductList().take(10)
+                val getProductFromApi = api.getProductList().take(30)
                 emit(Resource.Success(
                     data = getProductFromApi.map { it.toProductFromRemote() }
                 ))

@@ -15,9 +15,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
+import com.example.havanchallenge.feature.presentation.favorites.FavoriteViewModel
 
 @Composable
 fun HomeScreen(navHostController: NavHostController) {
+    val favoriteViewModel = hiltViewModel<FavoriteViewModel>()
     val viewModel = hiltViewModel<ProductViewModel>()
     val productListState = viewModel.productListState.collectAsState().value
 
@@ -38,7 +40,8 @@ fun HomeScreen(navHostController: NavHostController) {
             items(productListState.products?.size!!){ index ->
                 ProductItem(
                     productListState.products[index],
-                    navHostController
+                    navHostController,
+                    favoriteViewModel
                 )
                 Spacer(modifier = Modifier.height(16.dp))
             }

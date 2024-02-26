@@ -61,7 +61,12 @@ class FavoriteViewModel @Inject constructor(
     fun addFavorite(product: Product){
         viewModelScope.launch {
             repository.insert(product)
+        }
+    }
 
+    fun removeFavorite(product: Product){
+        viewModelScope.launch {
+            repository.delete(product)
         }
     }
 }
