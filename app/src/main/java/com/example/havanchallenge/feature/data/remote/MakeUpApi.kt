@@ -5,6 +5,6 @@ import retrofit2.http.GET
 
 interface MakeUpApi {
 
-    @GET("api/v1/products.json/")
-    suspend fun getProductList(): ProductDTO
+    @GET("api/v1/products.json")
+    suspend fun getProductList(): List<ProductDTO>
 }

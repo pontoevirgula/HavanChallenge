@@ -69,6 +69,7 @@ dependencies {
     implementation("androidx.compose.ui:ui-tooling-preview")
     implementation("androidx.compose.material3:material3")
     testImplementation("junit:junit:4.13.2")
+    testImplementation("junit:junit:4.12")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
     androidTestImplementation(platform("androidx.compose:compose-bom:2023.08.00"))
@@ -78,6 +79,7 @@ dependencies {
 
     //Navigation
     implementation("androidx.navigation:navigation-compose:2.7.7")
+    androidTestImplementation("androidx.navigation:navigation-testing:2.7.7")
 
     //Room
     implementation("androidx.room:room-ktx:2.6.1")
@@ -100,4 +102,13 @@ dependencies {
 
     // system UI Controller
     implementation("com.google.accompanist:accompanist-systemuicontroller:0.27.0")
+
+    //Local Unit Test
+    testImplementation("androidx.arch.core:core-testing:2.2.0")
+    testImplementation("io.mockk:mockk:1.13.2")
+    testImplementation("androidx.test:monitor:1.6.1")
+
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.4")
+    testImplementation("com.google.truth:truth:1.1.3")
+    testImplementation("org.mockito.kotlin:mockito-kotlin:4.1.0")
 }

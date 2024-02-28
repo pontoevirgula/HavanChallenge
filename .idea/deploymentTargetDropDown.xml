@@ -5,6 +5,9 @@
       <entry key="app">
         <State />
       </entry>
+      <entry key="initialState_isRendered()">
+        <State />
+      </entry>
     </value>
   </component>
 </project>
